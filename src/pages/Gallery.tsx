@@ -4,24 +4,43 @@ import MotionReel from "../components/MotionReel";
 import { FEATURED_IDS, HOME_SLIDES } from "../data/home";
 import { PHOTOS, photo, thumb, type Photo } from "../data/photos";
 
-// Twelve tiles that exactly fill a 12-column x 6-row block, in an order grid-flow-dense places without gaps.
+// Twelve tiles that exactly fill a 12-column x 6-row block (laptop) or a 6-column x 6-row block (phone),
+// in an order grid-flow-dense places without gaps.
 const md = (c: number, r: number) => `md:col-span-${c} md:row-span-${r}`;
 const TILE_PATTERN = [
-  { cls: `col-span-2 row-span-2 ${md(6, 2)}`, big: true },
-  { cls: `col-span-1 row-span-1 ${md(3, 1)}` },
-  { cls: `col-span-1 row-span-1 ${md(3, 2)}` },
-  { cls: `col-span-1 row-span-1 ${md(3, 1)}` },
-  { cls: `col-span-1 row-span-1 ${md(4, 2)}` },
-  { cls: `col-span-1 row-span-1 ${md(4, 1)}` },
-  { cls: `col-span-1 row-span-1 ${md(4, 2)}` },
-  { cls: `col-span-1 row-span-1 ${md(4, 1)}` },
-  { cls: `col-span-1 row-span-1 ${md(3, 1)}` },
-  { cls: `col-span-2 row-span-2 ${md(6, 2)}`, big: true },
-  { cls: `col-span-1 row-span-1 ${md(3, 2)}` },
-  { cls: `col-span-1 row-span-1 ${md(3, 1)}` },
+  { cls: `col-span-4 row-span-2 ${md(6, 2)}`, big: true },
+  { cls: `col-span-2 row-span-1 ${md(3, 1)}` },
+  { cls: `col-span-2 row-span-1 ${md(3, 2)}` },
+  { cls: `col-span-2 row-span-1 ${md(3, 1)}` },
+  { cls: `col-span-2 row-span-1 ${md(4, 2)}` },
+  { cls: `col-span-2 row-span-1 ${md(4, 1)}` },
+  { cls: `col-span-2 row-span-1 ${md(4, 2)}` },
+  { cls: `col-span-2 row-span-1 ${md(4, 1)}` },
+  { cls: `col-span-2 row-span-1 ${md(3, 1)}` },
+  { cls: `col-span-4 row-span-2 ${md(6, 2)}`, big: true },
+  { cls: `col-span-2 row-span-1 ${md(3, 2)}` },
+  { cls: `col-span-2 row-span-1 ${md(3, 1)}` },
 ];
 // Tailwind only generates classes it can see in source, so list the ones built above.
 // md:col-span-3 md:col-span-4 md:col-span-6 md:col-span-12 md:row-span-1 md:row-span-2
+// col-span-2 col-span-3 col-span-6
+
+// Photos left over after the last full block are laid out in even rows (up to 3 per row) so the
+// mosaic always ends on a straight line: each row splits the full width equally.
+function tailTiles(count: number) {
+  const rows: number[] = [];
+  for (let left = count; left > 0; ) {
+    const n = left === 4 ? 2 : Math.min(3, left); // 4 → 2 + 2 rather than 3 + 1
+    rows.push(n);
+    left -= n;
+  }
+  const span: Record<number, string> = {
+    1: "col-span-6 row-span-2 md:col-span-12 md:row-span-2",
+    2: "col-span-3 row-span-1 md:col-span-6 md:row-span-2",
+    3: "col-span-2 row-span-1 md:col-span-4 md:row-span-1",
+  };
+  return rows.flatMap((n) => Array.from({ length: n }, () => ({ cls: span[n], big: n < 3 })));
+}
 
 // Interleave collections so neighbouring tiles come from different places.
 function interleave(photos: Photo[]) {
@@ -42,9 +61,11 @@ const BUILDINGS_ONLY = [
   "p205", "p206", "p207", "p209",
 ];
 // Picked out of the Gallery by hand; some still appear inside their walks.
-const HIDDEN = ["p52", "p45", "p137", "p157", "p141", "p43", "p62"];
+const HIDDEN = ["p52", "p45", "p137", "p157", "p141", "p43", "p62", "p113"];
 const SHOWN_ELSEWHERE = new Set([...HOME_SLIDES.map((s) => s.id), ...FEATURED_IDS, ...BUILDINGS_ONLY, ...HIDDEN]);
 const ORDERED = interleave(PHOTOS.filter((p) => !SHOWN_ELSEWHERE.has(p.id)));
+const FULL = ORDERED.length - (ORDERED.length % TILE_PATTERN.length);
+const TAIL = tailTiles(ORDERED.length - FULL);
 
 export default function Gallery() {
   const [open, setOpen] = useState<number | null>(null);
@@ -73,14 +94,9 @@ export default function Gallery() {
 
       <section>
         <div className="container-site pb-9 pt-1.5 md:py-20">
-          <div className="grid grid-flow-dense auto-rows-[118px] grid-cols-3 gap-1.5 md:auto-rows-[220px] md:grid-cols-12 md:gap-3">
+          <div className="grid grid-flow-dense auto-rows-[118px] grid-cols-6 gap-1.5 md:auto-rows-[220px] md:grid-cols-12 md:gap-3">
             {ORDERED.map((p, i) => {
-              // A lone photo left over after the last full block spans the whole width.
-              const leftover = ORDERED.length % TILE_PATTERN.length;
-              const isLone = leftover === 1 && i === ORDERED.length - 1;
-              const tile = isLone
-                ? { cls: "col-span-3 row-span-2 md:col-span-12 md:row-span-2", big: true }
-                : TILE_PATTERN[i % TILE_PATTERN.length];
+              const tile = i < FULL ? TILE_PATTERN[i % TILE_PATTERN.length] : TAIL[i - FULL];
               return (
                 <button
                   key={p.id}

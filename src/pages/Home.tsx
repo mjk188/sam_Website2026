@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import Arrow from "../components/Arrow";
-import { PILLARS } from "../data/content";
+import { MISSION, PILLARS } from "../data/content";
 import { thumb } from "../data/photos";
 import HeroCarousel from "../components/HeroCarousel";
 
@@ -36,23 +36,27 @@ export default function Home() {
         </div>
       </section>
 
-      {/* What we do */}
+      {/* What we do: headline on the left; mission and the "08 streams" note on the right. */}
       <section className="border-t border-line">
-        <div className="container-site py-12 md:py-28">
-          <p className="eyebrow">What we do</p>
-          <div className="mt-5 grid gap-6 lg:grid-cols-12 lg:items-end lg:gap-10">
-            <h2 className="display text-4xl leading-[1.1] md:text-[56px] lg:col-span-8">
+        <div className="container-site grid gap-6 py-12 md:py-24 lg:grid-cols-12 lg:gap-14">
+          <div className="lg:col-span-5">
+            <p className="eyebrow">What we do</p>
+            <h2 className="display mt-3 text-[32px] leading-[1.08] md:mt-5 md:text-[52px]">
               Culture and Heritage as a <span className="accent text-teal">living practice.</span>
             </h2>
-            <p className="border-moss/40 font-serif text-lg leading-snug text-moss md:text-[21px] lg:col-span-4 lg:border-l lg:pl-8">
-              Six interlinked streams of work from conservation and research to education, curation, community and
-              collaboration.
-            </p>
           </div>
-          <blockquote className="mt-14 border-l-2 border-maroon pl-6 font-serif text-2xl italic leading-snug text-ink md:mt-20 md:pl-10 md:text-[36px]">
-            “Preserve, promote and advance cultural heritage and its values as a shared resource for sustainable
-            social, economic and environmental development.”
-          </blockquote>
+          <div className="lg:col-span-7 lg:pt-10">
+            <p className="font-serif text-[17px] leading-[1.55] text-ink md:text-[22px] md:leading-[1.6]">{MISSION}</p>
+            <div className="mt-5 flex items-center gap-3.5 border-t border-line pt-5 md:mt-9 md:gap-5 md:pt-8">
+              <p className="font-serif text-[17px] leading-[1.55] text-moss md:text-[22px] md:leading-[1.6]">
+                <em className="text-maroon">Eight</em> interlinked streams of work, from conservation and research to education, curation, community and
+                collaboration.
+                <Link to="/about" className="mt-2 block w-fit border-b border-teal/50 pb-0.5 font-sans text-[15px] font-semibold text-teal hover:border-maroon hover:text-maroon md:mt-3 md:text-[17px]">
+                  See all →
+                </Link>
+              </p>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -83,6 +87,21 @@ export default function Home() {
               </div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Why we do it: centred, after What and How. */}
+      <section className="border-t border-line">
+        <div className="container-site py-12 text-center md:py-24">
+          <p className="eyebrow">Why we do it</p>
+          <h2 className="display mx-auto mt-3 max-w-4xl text-[30px] leading-[1.1] md:mt-5 md:text-[52px]">
+            The future has no roots <span className="accent text-teal">without the past.</span>
+          </h2>
+          <p className="mx-auto mt-4 max-w-3xl font-serif text-[15px] leading-[1.55] text-muted md:mt-6 md:text-[19px] md:leading-[1.6]">
+            Our heritage is more than history; it is the foundation of our identity.
+            <br />
+            By preserving our past and protecting our cultural treasures, we build a bridge between generations to inspire and guide the future.
+          </p>
         </div>
       </section>
 

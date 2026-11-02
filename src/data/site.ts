@@ -16,8 +16,10 @@ export const WEB3FORMS_KEY = "d7bfae8b-9e17-4b3d-989b-352b873cd345";
 export const mailto = (subject: string, body = "") =>
   `mailto:${EMAIL}?subject=${encodeURIComponent(subject)}${body ? `&body=${encodeURIComponent(body)}` : ""}`;
 
+/** Attend an Event has its own top-level tab; Get Involved covers the other ways to take part. */
+export const ATTEND = { label: "Attend an Event", to: "/get-involved/attend" };
+
 export const GET_INVOLVED = [
-  { label: "Attend an Event", short: "Attend an event", to: "/get-involved/attend" },
   { label: "Collaborate", short: "Collaborate", to: "/get-involved/collaborate" },
   { label: "Sponsor & Contribute", short: "Sponsor & Contribute", to: "/get-involved/sponsor" },
 ];

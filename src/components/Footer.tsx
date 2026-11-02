@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import DiamondBand from "./DiamondBand";
 import Wordmark from "./Wordmark";
 import { COPYRIGHT_NOTICE } from "../data/legal";
-import { GET_INVOLVED, SOCIALS, TRIAD_DEVANAGARI, TRIAD_ENGLISH } from "../data/site";
+import { ATTEND, SOCIALS, TRIAD_DEVANAGARI, TRIAD_ENGLISH } from "../data/site";
 
 const heading = "font-mono text-[10px] uppercase md:text-[13px] tracking-[0.18em] text-teal";
 const link = "whitespace-nowrap text-[12.5px] leading-tight text-teal md:text-[17px] md:leading-normal transition-colors hover:text-maroon";
@@ -28,22 +28,12 @@ export default function Footer() {
             <p className="mt-1.5 font-mono text-[9.5px] font-medium uppercase md:mt-3 md:text-[12px] tracking-[0.18em] text-muted">{TRIAD_ENGLISH}</p>
           </div>
 
-          {/* Phones: each group on a single line of links, to keep the footer short. */}
+          {/* Phones: each group on a single line, to keep the footer short. */}
           <div className="space-y-1.5 text-[12px] leading-snug tracking-[-0.01em] md:hidden">
-            {[
-              { title: "", items: [{ label: "Home", to: "/" }, { label: "About Us", to: "/about" }, { label: "Gallery", to: "/gallery" }, { label: "Contact", to: "/contact" }] },
-              { title: "Get Involved", items: GET_INVOLVED.map((g) => ({ label: g.label.replace("Attend an Event", "Attend"), to: g.to })) },
-            ].map((group) => (
-              <p key={group.title || "pages"}>
-                {group.title && <span className={`${heading} mr-1.5 !tracking-[0.1em]`}>{group.title}</span>}
-                {group.items.map((item, i) => (
-                  <span key={item.to}>
-                    {i > 0 && <span className="text-faint"> · </span>}
-                    <Link to={item.to} className={`${link} !text-[12px]`}>{item.label}</Link>
-                  </span>
-                ))}
-              </p>
-            ))}
+            <p>
+              <Link to={ATTEND.to} className={`${heading} mr-1.5 !tracking-[0.1em]`}>{ATTEND.label}</Link>
+              <Link to={ATTEND.to} className={`${link} !text-[12px]`}>Samvaad</Link>
+            </p>
             <p>
               <span className={`${heading} mr-1.5 !tracking-[0.1em]`}>Follow</span>
               {SOCIALS.map((s) => (
@@ -52,24 +42,14 @@ export default function Footer() {
             </p>
           </div>
 
-          <div className="hidden md:col-span-2 md:col-start-7 md:block">
-            <h3 className={heading}>Explore</h3>
+          <div className="hidden md:col-span-2 md:col-start-9 md:block">
+            <h3 className={heading}>
+              <Link to={ATTEND.to} className="transition-colors hover:text-maroon">{ATTEND.label}</Link>
+            </h3>
             <ul className="mt-1.5 space-y-1.5 text-[12.5px] leading-[1.25] md:mt-6 md:space-y-3 md:text-base md:leading-normal">
-              <li><Link to="/" className={link}>Home</Link></li>
-              <li><Link to="/about" className={link}>About Us</Link></li>
-              <li><Link to="/gallery" className={link}>Gallery</Link></li>
-              <li><Link to="/contact" className={link}>Contact</Link></li>
-            </ul>
-          </div>
-
-          <div className="hidden md:col-span-2 md:block">
-            <h3 className={heading}>Get Involved</h3>
-            <ul className="mt-1.5 space-y-1.5 text-[12.5px] leading-[1.25] md:mt-6 md:space-y-3 md:text-base md:leading-normal">
-              {GET_INVOLVED.map((item) => (
-                <li key={item.to}>
-                  <Link to={item.to} className={link}>{item.label}</Link>
-                </li>
-              ))}
+              <li>
+                <Link to={ATTEND.to} className={link}>Samvaad</Link>
+              </li>
             </ul>
           </div>
 

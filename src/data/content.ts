@@ -25,6 +25,16 @@ export const HOME_STREAMS = [
   },
 ];
 
+/** Shown on Home (What we do) and About. */
+export const VISION =
+  "To preserve, promote and advance cultural heritage and its values as a shared resource for sustainable social, economic and environmental development.";
+export const MISSION =
+  "We bring communities and culture together, fostering culture-led development through research, community awareness, experiential learning, participation and collaborations preserving and celebrating India's tangible and intangible heritage.";
+
+/** Shorter mission wording used on the About page. */
+export const ABOUT_MISSION =
+  "We work to keep India's heritage alive by bringing people, culture and knowledge together through dialogue, learning and conservation.";
+
 export const PILLARS = [
   {
     deva: "संस्कृति",

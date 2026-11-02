@@ -1,10 +1,10 @@
 import { useEffect, useRef, useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import Wordmark from "./Wordmark";
-import { GET_INVOLVED } from "../data/site";
+import { ATTEND, GET_INVOLVED } from "../data/site";
 
 const navClass = ({ isActive }: { isActive: boolean }) =>
-  `inline-flex items-center gap-2 font-mono text-[15px] font-medium uppercase leading-none tracking-[0.14em] transition-colors hover:text-maroon ${
+  `inline-flex items-center gap-2 whitespace-nowrap font-mono text-[15px] font-medium uppercase leading-none tracking-[0.14em] transition-colors hover:text-maroon lg:text-[12.5px] lg:tracking-[0.1em] xl:text-[14px] xl:tracking-[0.12em] ${
     isActive ? "text-maroon" : "text-teal"
   }`;
 
@@ -13,7 +13,7 @@ export default function Header() {
   const [dropdown, setDropdown] = useState(false);
   const [mobile, setMobile] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
-  const involvedActive = pathname.startsWith("/get-involved");
+  const involvedActive = pathname.startsWith("/get-involved") && pathname !== ATTEND.to;
 
   useEffect(() => {
     setDropdown(false);
@@ -35,7 +35,7 @@ export default function Header() {
           <Wordmark />
         </Link>
 
-        <nav className="ml-auto hidden items-center gap-8 lg:flex xl:gap-12">
+        <nav className="ml-auto hidden items-center gap-5 lg:flex xl:gap-8">
           <NavLink to="/" end className={navClass}>
             Home
           </NavLink>
@@ -45,6 +45,9 @@ export default function Header() {
           <NavLink to="/gallery" className={navClass}>
             Gallery
           </NavLink>
+          <NavLink to={ATTEND.to} className={navClass}>
+            {ATTEND.label}
+          </NavLink>
           <div
             ref={ref}
             className="relative"
@@ -53,7 +56,7 @@ export default function Header() {
           >
             {/* Clicking goes to the first Get Involved page; hovering still shows the sub-pages. */}
             <Link
-              to="/get-involved/attend"
+              to={GET_INVOLVED[0].to}
               aria-haspopup="true"
               aria-expanded={dropdown}
               onFocus={() => setDropdown(true)}
@@ -85,8 +88,8 @@ export default function Header() {
           </NavLink>
         </nav>
 
-        <div className="flex items-center gap-4 lg:ml-10">
-          <Link to="/join" className="btn-primary hidden px-6 py-3 text-[15px] sm:inline-flex">
+        <div className="flex items-center gap-4 lg:ml-7 xl:ml-9">
+          <Link to="/join" className="btn-primary hidden whitespace-nowrap px-6 py-3 text-[15px] sm:inline-flex lg:px-5 lg:text-[14px] xl:px-6 xl:text-[15px]">
             Join the Collective
           </Link>
           <button
@@ -114,7 +117,10 @@ export default function Header() {
             <NavLink to="/gallery" className={navClass}>
               Gallery
             </NavLink>
-            <Link to="/get-involved/attend" className={navClass({ isActive: involvedActive })}>
+            <NavLink to={ATTEND.to} className={navClass}>
+              {ATTEND.label}
+            </NavLink>
+            <Link to={GET_INVOLVED[0].to} className={navClass({ isActive: involvedActive })}>
               Get Involved
             </Link>
             {GET_INVOLVED.map((item) => (

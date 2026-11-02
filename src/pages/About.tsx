@@ -1,5 +1,5 @@
 import NumberedGrid from "../components/NumberedGrid";
-import { ACTIVITIES } from "../data/content";
+import { ABOUT_MISSION, ACTIVITIES, VISION } from "../data/content";
 import { byId, thumb } from "../data/photos";
 
 export default function About() {
@@ -39,16 +39,13 @@ export default function About() {
           <div>
             <h2 className="display text-[26px] text-maroon md:text-[44px]">Vision</h2>
             <p className="mt-2.5 font-serif text-[15px] leading-[1.55] text-ink md:mt-4 md:text-[20px] md:leading-[1.6]">
-              To preserve, promote and advance cultural heritage and its values as a shared resource for sustainable
-              social, economic and environmental development.
+              {VISION}
             </p>
           </div>
           <div className="border-t border-line pt-6 md:border-l md:border-t-0 md:pl-16 md:pt-0">
             <h2 className="display text-[26px] text-teal md:text-[44px]">Mission</h2>
             <p className="mt-2.5 font-serif text-[15px] leading-[1.55] text-ink md:mt-4 md:text-[20px] md:leading-[1.6]">
-              To connect culture, communities and development through culture, conversations and conservation —
-              fostering heritage education, cultural engagement, experiential learning and initiatives that preserve
-              and celebrate India's diverse tangible and intangible heritage.
+              {ABOUT_MISSION}
             </p>
           </div>
         </div>
