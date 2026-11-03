@@ -29,4 +29,4 @@ asked.
 - Back up before bulk-processing photos or video.
 - Strip metadata (GPS, device, dates) from new media before committing: `ffmpeg -map_metadata -1 -c copy` for video;
   resizing through ffmpeg drops EXIF from JPGs.
-- Never commit plain contact details: `EMAIL` and `WHATSAPP_URL` are assembled at runtime in `src/data/site.ts`.
+- Never commit plain contact details: `EMAIL` is assembled at runtime in `src/data/site.ts`, and no phone number is published.

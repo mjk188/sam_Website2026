@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import Arrow from "./Arrow";
 import Lightbox from "./Lightbox";
 import ReelModal from "./ReelModal";
 import { byId, thumb } from "../data/photos";
-import { WHATSAPP_URL } from "../data/site";
 import type { Walk } from "../data/content";
 
 type Props = { walk: Walk; onClose: () => void };
@@ -50,9 +50,9 @@ export default function WalkModal({ walk, onClose }: Props) {
             <p className="mt-1 font-deva text-2xl text-maroon">{walk.deva}</p>
             <p className="mt-6 font-serif text-xl italic leading-snug text-muted md:text-[24px]">{walk.body}</p>
             {walk.details && <p className="mt-5 text-[17px] leading-[1.7] text-muted">{walk.details}</p>}
-            <a href={WHATSAPP_URL} target="_blank" rel="noreferrer" className="btn-primary mt-7 md:mt-10">
+            <Link to={`/contact?about=${encodeURIComponent(walk.title)}`} className="btn-primary mt-7 md:mt-10">
               Drop a message <Arrow />
-            </a>
+            </Link>
           </div>
         </div>
 

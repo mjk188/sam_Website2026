@@ -7,8 +7,13 @@ _Last updated: 3 November 2026_
 - All pages are built and on `main`. The repository is **public** but proprietary (© Sam Foundation, see LICENSE), and
   is hosted free on **GitHub Pages** (Source: GitHub Actions; first deploy succeeded 2 Nov 2026). History was reset
   to a single clean commit on 2 Nov 2026; the pre-reset history exists only in the local branch `backup/pre-public`.
-- Repo hardening is on: secret scanning plus push protection, Dependabot alerts, ruleset "Protect main" (no
-  force-push or deletion), Issues/Wiki/Projects/Discussions off, read-only Actions token, GitHub-owned actions only.
+- Repo hardening is on: secret scanning plus push protection, Dependabot alerts and security updates (monthly
+  version checks in `.github/dependabot.yml`), CodeQL code scanning (0 alerts), private vulnerability reporting,
+  ruleset "Protect main" (no force-push or deletion), Issues/Wiki/Projects/Discussions off, read-only Actions token,
+  GitHub-owned actions only, pinned to commit SHAs (required by repo setting). `npm audit`: 0 vulnerabilities
+  (React Router 7, Vite 8, ESLint 10; `minimatch` forced to 11 via `overrides`). Build runs on Node 24.
+- TLS: Let's Encrypt certificate (auto-renewed by GitHub), TLS 1.2/1.3 only, HTTPS enforced, www → apex redirect.
+  GitHub Pages can't send custom headers (no HSTS); the CSP is a meta tag.
 - **Live at https://samfoundation.in** (bought 3 Nov 2026 at Hostinger for 3 years; DNS in Hostinger: four `A`
   records for `@` → 185.199.108–111.153, `CNAME` `www` → `mjk188.github.io`; custom domain set in GitHub Pages).
   Turn off auto-renew on Hostinger's free 1-month hosting add-on (not used). `samfoundation.org` (parked at GoDaddy, possibly for sale) and `samfoundation.com` (expires 30 Nov 2026) belong
@@ -19,7 +24,8 @@ _Last updated: 3 November 2026_
   limits, one per minute). Tested 2 Nov 2026.
 - Copyright: footer notice on every page, `/terms` page, LICENSE, SECURITY.md, a right-click/drag deterrent on media,
   and a Content-Security-Policy on the published build.
-- Privacy: all video metadata (including GPS) stripped; photos carry no EXIF; contact details are assembled at runtime.
+- Privacy: all video metadata (including GPS) stripped; photos carry no EXIF; the email is assembled at runtime;
+  no phone number is published (walk "Drop a message" buttons go to the contact form, 3 Nov 2026).
 
 ## Content on the site
 
@@ -38,8 +44,9 @@ _Last updated: 3 November 2026_
 ## Open items
 
 - HTTPS is enforced (3 Nov 2026). Verify the Hostinger registration email. Optional: Google Search Console with `sitemap.xml`; email forwarding for the domain.
+- In Hostinger: turn on DNSSEC and the domain transfer lock; optionally a `CAA` record
+  `0 issue "letsencrypt.org"`. Two-factor login on the GitHub and Hostinger accounts.
 - Optional: hCaptcha on the contact form (Web3Forms free tier). Needs a manual test in a real browser.
-- Consent check for photos showing children; blur or remove if needed.
 - Manifesto page ("Read our manifesto" still points to `/about`). Donation channels for "Contribute".
 - Higher-quality originals for the Sunder Nursery and Gardens of Paradise posters.
 - Puppet clip (`public/videos/puppet-stall.mp4`) crops out the dancing dolls; recut needs the original IMG_9310.MOV

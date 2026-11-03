@@ -40,7 +40,7 @@ npm run preview   # serve the built site from dist/
 Text and lists live in `src/data/`, not in the page files:
 
 - `src/data/content.ts`: walks/events, the three streams, activities, collaboration types, partners
-- `src/data/site.ts`: email, WhatsApp link, Instagram, Get Involved menu, contact form key
+- `src/data/site.ts`: email, Instagram, Get Involved menu, contact form key
 - `src/data/home.ts`: which photos the Home slideshow shows, and photos featured on other pages
 - `src/data/photos.ts`: the photo catalogue (id, collection, alt text)
 

@@ -1,4 +1,5 @@
-import { useRef, useState, type FormEvent } from "react";
+import { useEffect, useRef, useState, type FormEvent } from "react";
+import { useSearchParams } from "react-router-dom";
 import Arrow from "../components/Arrow";
 import { EMAIL, SOCIALS, WEB3FORMS_KEY, mailto } from "../data/site";
 
@@ -30,10 +31,20 @@ const markSent = () => {
 };
 
 export default function Contact() {
-  const [form, setForm] = useState({ name: "", email: "", message: "" });
+  // Walk pages link here with ?about=<walk title>, which starts the message for the visitor.
+  const [params] = useSearchParams();
+  const about = params.get("about")?.slice(0, 120);
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    message: about ? `I'm interested in ${about}. ` : "",
+  });
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error" | "wait" | "links">("idle");
   const [botcheck, setBotcheck] = useState(false);
-  const openedAt = useRef(Date.now());
+  const openedAt = useRef(0);
+  useEffect(() => {
+    openedAt.current = Date.now();
+  }, []);
 
   // Sends through Web3Forms straight to the inbox; without a key, hands the message to the visitor's mail client.
   const submit = async (e: FormEvent) => {

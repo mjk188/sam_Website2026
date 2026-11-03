@@ -1,6 +1,6 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { EVENTS } from "../data/content";
-import { WHATSAPP_URL } from "../data/site";
 import WalkCard from "../components/WalkCard";
 import WalkModal from "../components/WalkModal";
 
@@ -26,14 +26,12 @@ export default function Attend() {
           <p className="lead mt-2 lg:whitespace-nowrap">Exclusively curated Walks, workshops and dialogues across India and beyond.</p>
           <p className="lead mt-1">
             Interested?{" "}
-            <a
-              href={WHATSAPP_URL}
-              target="_blank"
-              rel="noreferrer"
+            <Link
+              to="/contact"
               className="font-medium text-teal underline decoration-teal/40 underline-offset-4 hover:text-maroon"
             >
               Drop a message
-            </a>
+            </Link>
           </p>
 
           <div className="mt-6 grid grid-cols-2 gap-x-3 sm:gap-x-8 lg:grid-cols-4">

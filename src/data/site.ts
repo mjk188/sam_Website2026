@@ -2,7 +2,6 @@
 // which keeps them out of reach of most email and phone-number scrapers.
 const join = (...parts: string[]) => parts.join("");
 export const EMAIL = join("collective", "samm", String.fromCharCode(64), "gmail", ".", "com");
-export const WHATSAPP_URL = join("https://wa.me/", "91", "95328", "35871");
 
 export const ORG_NAME = "Sam Foundation";
 export const SITE_DOMAIN = "samfoundation.in";

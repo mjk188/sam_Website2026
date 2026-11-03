@@ -15,10 +15,13 @@ export default function Header() {
   const ref = useRef<HTMLDivElement>(null);
   const involvedActive = pathname.startsWith("/get-involved") && pathname !== ATTEND.to;
 
-  useEffect(() => {
+  // Close the menus whenever the page changes.
+  const [lastPath, setLastPath] = useState(pathname);
+  if (pathname !== lastPath) {
+    setLastPath(pathname);
     setDropdown(false);
     setMobile(false);
-  }, [pathname]);
+  }
 
   useEffect(() => {
     const close = (e: MouseEvent) => {

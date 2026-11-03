@@ -10,12 +10,13 @@ const SLIDE_MS = 3000;
 export default function HeroCarousel({ className = "" }: { className?: string }) {
   const [index, setIndex] = useState(0);
   // Only fetch a slide shortly before it is shown, so the first photo isn't competing with all the others.
-  const [ready, setReady] = useState(1);
-
-  useEffect(() => setReady((r) => Math.max(r, index + 2)), [index]);
+  const [ready, setReady] = useState(2);
 
   useEffect(() => {
-    const t = window.setInterval(() => setIndex((i) => (i + 1) % SLIDES.length), SLIDE_MS);
+    const t = window.setInterval(() => {
+      setIndex((i) => (i + 1) % SLIDES.length);
+      setReady((r) => Math.min(r + 1, SLIDES.length));
+    }, SLIDE_MS);
     return () => window.clearInterval(t);
   }, []);
 
