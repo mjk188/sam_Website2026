@@ -1,0 +1,11 @@
+node_modules/
+dist/
+.env
+.env.*
+.DS_Store
+*.tsbuildinfo
+
+# Internal notes (project status, agent instructions) stay on the owner's machine, out of the public repo.
+CLAUDE.md
+docs/
+.claude/
