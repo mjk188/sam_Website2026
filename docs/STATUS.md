@@ -1,6 +1,6 @@
 # Project status
 
-_Last updated: 2 November 2026_
+_Last updated: 3 November 2026_
 
 ## Where things stand
 
@@ -23,6 +23,12 @@ _Last updated: 2 November 2026_
 
 ## Content on the site
 
+- **Home order:** banner → What we do (mission + "Eight interlinked streams", See all → /about) → How we do it (three
+  pillars) → Why we do it ("The future has no roots without the past.") → quote band.
+- **Navigation:** Home · About Us · Gallery · Attend an Event · Get Involved (Collaborate, Sponsor & Contribute) ·
+  Contact Us. The Attend page is titled संवाद | Samvaad. The footer shows only Attend an Event (Samvaad) and Follow.
+- **About:** Vision plus a shorter mission ("We work to keep India's heritage alive…"); Home uses the longer mission.
+
 - **Walks** (Attend page, in this order): Quwwat-e-Qutub, Sunder Nursery, Safdarjung Tomb, Peepal ki Chhanv Mein
   (theatre, with 4 Instagram reels), Hauz-e-Khas (20 Sep 2026, 10:30 AM), Gardens of Paradise (लोधी गार्डन),
   Humayun's Tomb, Qalb-e-Sufiya (Nizamuddin Dargah), Kingsway to Kartavyapath.
@@ -38,3 +44,7 @@ _Last updated: 2 November 2026_
 - Consent check for photos showing children; blur or remove if needed.
 - Manifesto page ("Read our manifesto" still points to `/about`). Donation channels for "Contribute".
 - Higher-quality originals for the Sunder Nursery and Gardens of Paradise posters.
+- Puppet clip (`public/videos/puppet-stall.mp4`) crops out the dancing dolls; recut needs the original IMG_9310.MOV
+  (no longer on the laptop), or remove the clip.
+- Attend page intro line: the owner proposed "…from intimate groups to large corporate events"; wording not chosen yet.
+- Restore point: git tag `checkpoint-2026-11-03` (the site before the 3 Nov edits).
