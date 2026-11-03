@@ -9,12 +9,12 @@ _Last updated: 3 November 2026_
   to a single clean commit on 2 Nov 2026; the pre-reset history exists only in the local branch `backup/pre-public`.
 - Repo hardening is on: secret scanning plus push protection, Dependabot alerts, ruleset "Protect main" (no
   force-push or deletion), Issues/Wiki/Projects/Discussions off, read-only Actions token, GitHub-owned actions only.
-- **Domain:** `samfoundation.in` is the chosen address (to be purchased). `public/CNAME` already holds it.
-  `samfoundation.org` (parked at GoDaddy, possibly for sale) and `samfoundation.com` (expires 30 Nov 2026) belong
+- **Live at https://samfoundation.in** (bought 3 Nov 2026 at Hostinger for 3 years; DNS in Hostinger: four `A`
+  records for `@` → 185.199.108–111.153, `CNAME` `www` → `mjk188.github.io`; custom domain set in GitHub Pages).
+  Turn off auto-renew on Hostinger's free 1-month hosting add-on (not used). `samfoundation.org` (parked at GoDaddy, possibly for sale) and `samfoundation.com` (expires 30 Nov 2026) belong
   to others.
-- Publishing is automatic via `.github/workflows/deploy.yml` on every push to `main`. Until the domain is connected,
-  the Pages address `mjk188.github.io/sam_Website2026/` shows a blank page, because the site expects to live at a
-  domain root.
+- Publishing is automatic via `.github/workflows/deploy.yml` on every push to `main`. The site expects to live at
+  a domain root, so only the domain address works.
 - The contact form sends live through Web3Forms, with spam guards (honeypot, 3-second minimum, ≤2 links, length
   limits, one per minute). Tested 2 Nov 2026.
 - Copyright: footer notice on every page, `/terms` page, LICENSE, SECURITY.md, a right-click/drag deterrent on media,
@@ -37,9 +37,7 @@ _Last updated: 3 November 2026_
 
 ## Open items
 
-- Buy `samfoundation.in`. Set DNS: `A` records for `@` → 185.199.108.153, .109.153, .110.153, .111.153; `CNAME` `www` →
-  `mjk188.github.io`. Then set the custom domain in Settings → Pages (or `gh api -X PUT repos/mjk188/sam_Website2026/pages -f cname=samfoundation.in`)
-  and tick Enforce HTTPS.
+- HTTPS is enforced (3 Nov 2026). Verify the Hostinger registration email. Optional: Google Search Console with `sitemap.xml`; email forwarding for the domain.
 - Optional: hCaptcha on the contact form (Web3Forms free tier). Needs a manual test in a real browser.
 - Consent check for photos showing children; blur or remove if needed.
 - Manifesto page ("Read our manifesto" still points to `/about`). Donation channels for "Contribute".
