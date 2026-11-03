@@ -1,4 +1,5 @@
 # Monthly update checks for the site's packages and the deploy workflow's actions.
+# Major versions are skipped: they need code changes and a visual check, so they are upgraded by hand.
 version: 2
 updates:
   - package-ecosystem: npm
@@ -8,6 +9,9 @@ updates:
     groups:
       all:
         patterns: ["*"]
+    ignore:
+      - dependency-name: "*"
+        update-types: ["version-update:semver-major"]
   - package-ecosystem: github-actions
     directory: /
     schedule:
