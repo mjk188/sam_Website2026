@@ -2,11 +2,13 @@ import { useEffect, type MouseEvent } from "react";
 import { Outlet, useLocation } from "react-router-dom";
 import Header from "./Header";
 import Footer from "./Footer";
+import { PAGES, pageFor } from "../data/pages";
 
 export default function Layout() {
   const { pathname } = useLocation();
   useEffect(() => {
     window.scrollTo(0, 0);
+    document.title = (pageFor(pathname) ?? PAGES[0]).title;
   }, [pathname]);
 
   // Copyright deterrent: no "Save image/video as…" menu on site media (see /terms).
