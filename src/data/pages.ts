@@ -7,7 +7,7 @@ const SUFFIX = " | Sam Foundation";
 export const PAGES: Page[] = [
   {
     path: "/",
-    title: "Sam Foundation — A Collective Confluence",
+    title: "Sam Foundation — Culture, Conversations and Conservation",
     description:
       "Sam (सम्) is a multifaceted heritage collective — Sanskriti · Samvad · Sanrakshan. Culture, conversations and conservation across India and beyond.",
   },
